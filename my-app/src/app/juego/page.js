@@ -8,14 +8,13 @@ export default function Juego()
     <>
         
         <div>
-            <h1>Adivina la Bandera</h1>
             <GeneradorBandera/>
         </div>
 
         <div className={styles.grid}>
             <Link href="/">
-                <div className={styles.card}>
-                    <h2> Volver </h2>
+                <div>
+                    <button className={styles.buttonVolver}>Volver</button>
                 </div>
             </Link>
         </div>
