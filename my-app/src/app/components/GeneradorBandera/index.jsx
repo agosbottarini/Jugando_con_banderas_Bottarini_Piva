@@ -1,20 +1,65 @@
 "use client";
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
-const GeneradorBandera = (props) => 
-{
-    console.log(props)
-    return(
-        <ul>
-        {props.map((pais) => (
-          <li key={pais.name}>
+export default function GeneradorBandera() {
+  const [paises, setPaises] = useState([]);
+  const [bandera, setBandera] = useState(null);
+  const [input, setInput] = useState('');
+  const [message, setMessage] = useState('');
 
-            <img src={pais.flag} alt={`Bandera de ${pais.name}`} width="500vw" height="250vw" />
+  useEffect(() => {
+    const fetchPaises = async () => {
 
-          </li>
-        ))}
-      </ul>
-    )
+        const response = await fetch('https://countriesnow.space/api/v0.1/countries/flag/images')
+        const data = await response.json();
+
+        setPaises(data.data);
+        setRandomFlag(data.data);
+
+    };
+
+    fetchPaises();
+  }, []);
+
+  const setRandomFlag = (data) => {
+    const randomPais = data[Math.floor(Math.random() * data.length)];
+    setBandera(randomPais);
+  };
+
+  const handleSubmit = () => {
+    if (input.toLowerCase() === bandera.name.toLowerCase()) {
+      setMessage('Correcto!');
+    } else {
+      setMessage('Incorrecto. Intenta de nuevo.');
+    }
+    
+    setRandomFlag(paises);
+    setInput('');
+  };
+
+  if (!bandera) return <p></p>;
+
+  return (
+    <div>
+
+      <h2>{bandera.name}</h2>
+
+      <img src={bandera.flag} alt={`Bandera de ${bandera.name}`} width="100" height="60" />
+
+      <form onSubmit={handleSubmit}>
+
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Ingrese el nombre del país"
+        />
+
+        <button type="submit">Enviar</button>
+
+      </form>
+
+      {message && <p>{message}</p>}
+    </div>
+  );
 }
-
-export default GeneradorBandera;
