@@ -6,31 +6,35 @@ export default function GeneradorBandera() {
   const [bandera, setBandera] = useState(null);
   const [input, setInput] = useState('');
   const [message, setMessage] = useState('');
+  const [puntos, setPuntos] = useState(null);
 
   useEffect(() => {
     const fetchPaises = async () => {
 
-        const response = await fetch('https://countriesnow.space/api/v0.1/countries/flag/images')
-        const data = await response.json();
+      const response = await fetch('https://countriesnow.space/api/v0.1/countries/flag/images')
+      const data = await response.json();
 
-        setPaises(data.data);
-        setRandomFlag(data.data);
-
+      setPaises(data.data);
+      setRandomFlag(data.data);
     };
 
     fetchPaises();
   }, []);
+
 
   const setRandomFlag = (data) => {
     const randomPais = data[Math.floor(Math.random() * data.length)];
     setBandera(randomPais);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if (input.toLowerCase() === bandera.name.toLowerCase()) {
       setMessage('Correcto!');
+      setPuntos(prevPuntos => prevPuntos + 10);
     } else {
       setMessage('Incorrecto. Intenta de nuevo.');
+      setPuntos(prevPuntos => prevPuntos - 1);
     }
     
     setRandomFlag(paises);
@@ -60,6 +64,8 @@ export default function GeneradorBandera() {
       </form>
 
       {message && <p>{message}</p>}
+      {puntos && <p> Puntos: {puntos }</p>}
+
     </div>
   );
 }
