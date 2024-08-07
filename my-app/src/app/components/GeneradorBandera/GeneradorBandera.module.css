@@ -42,10 +42,12 @@
   cursor: pointer;
   background-color: #8130b8;
   color: white;
+  margin-right: 1em;
 }
 
 .enviar {
   margin-top: 1.4em;
+  font-size: 2em;
 }
 
 .message {
@@ -56,5 +58,13 @@
 .puntos {
   font-size: 1.2em;
   margin-top: 10px;
+}
+
+.tiempo{
+  position: fixed;
+  top: 3em;
+  right: 4em;
+  font-size: 1.2em;
+  cursor: pointer;
 }
 

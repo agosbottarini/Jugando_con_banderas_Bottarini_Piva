@@ -89,6 +89,7 @@ export default function GeneradorBandera() {
   return (
     <div className={styles.container}>
       <h2 className={styles.heading}>Adivina la Bandera</h2>
+      <h2>{bandera.name}</h2>
       {letras && <h2>{letras}</h2>}
       <img className={styles.flagImage} src={bandera.flag} alt={`Bandera de ${bandera.name}`} />
       <form className={styles.form} onSubmit={handleSubmit}>
@@ -101,6 +102,7 @@ export default function GeneradorBandera() {
         />
         <div className='enviar'>
           <button className={styles.button} type="submit">Enviar</button>
+          {botonPista && <button className={styles.button} onClick={mostrarLetrasAzar}>Pista</button>}
         </div>
         
       </form>
@@ -108,12 +110,8 @@ export default function GeneradorBandera() {
       {puntos !== null && <p className={styles.puntos}> Puntos: {puntos }</p>}
       <div>
 
-      {/*REACOMODAR LA VISTA DE TIEMPO RESTANTE*/}
-      <p className=''>Tiempo restante: {tiempoRestante} segundos</p>
 
-      <div className='enviar'>
-       {botonPista && <button onClick={mostrarLetrasAzar}>Pista</button>}
-      </div>
+      <p className={styles.tiempo}>Tiempo restante: <strong>{tiempoRestante} </strong>segundos</p>
 
       </div>
     </div>
