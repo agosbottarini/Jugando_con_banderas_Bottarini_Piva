@@ -6,6 +6,7 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.center}>
         <p style={{ fontSize: "2vw" }}><strong>Adivina la Bandera!</strong></p>
+        <p>Hecho por Bottarini Agostina y Piva Joaquin</p>
       </div>
       <div className={styles.grid}>
         <Link href="/juego">
