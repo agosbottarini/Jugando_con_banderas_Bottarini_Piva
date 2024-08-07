@@ -107,7 +107,9 @@ export default function GeneradorBandera() {
       {message && <p className={styles.message}>{message}</p>}
       {puntos !== null && <p className={styles.puntos}> Puntos: {puntos }</p>}
       <div>
-      <p>Tiempo restante: {tiempoRestante} segundos</p>
+
+      {/*REACOMODAR LA VISTA DE TIEMPO RESTANTE*/}
+      <p className=''>Tiempo restante: {tiempoRestante} segundos</p>
 
       <div className='enviar'>
        {botonPista && <button onClick={mostrarLetrasAzar}>Pista</button>}

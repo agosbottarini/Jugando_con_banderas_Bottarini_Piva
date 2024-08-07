@@ -6,7 +6,6 @@ export default function Home() {
     <main className={styles.main}>
       <div className={styles.center}>
         <p style={{ fontSize: "2vw" }}><strong>Adivina la Bandera!</strong></p>
-        <p>Hecho por Bottarini Agostina y Piva Joaquin</p>
       </div>
       <div className={styles.grid}>
         <Link href="/juego">
@@ -14,6 +13,7 @@ export default function Home() {
             <button className={styles.heading}>Jugar!!</button>
           </div>
         </Link>
+        <p style={{marginTop: "3em"}}>Hecho por Bottarini Agostina y Piva Joaquin</p>
       </div>
     </main>
   );
